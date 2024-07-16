@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Lista de Desafios Pessoais
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta é uma aplicação para gerenciar uma lista de desafios pessoais, desenvolvida utilizando a biblioteca React. A aplicação permite adicionar, editar e remover desafios, além de exibir uma lista dos desafios adicionados de forma dinâmica.
 
-## Available Scripts
+## Índice
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Componentes](#componentes)
+- [Estilização](#estilização)
+- [Publicação](#publicação)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 
-In the project directory, you can run:
+## Instalação
 
-### `npm start`
+### Pré-requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Antes de começar, você precisará ter o Node.js e o npm instalados em sua máquina.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Passos para Instalação
 
-### `npm test`
+1. **Clone o repositório**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Clone o repositório para a sua máquina local usando o seguinte comando:
 
-### `npm run build`
+    ```bash
+    git clone <URL_DO_REPOSITORIO>
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Navegue até o diretório do projeto:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    cd personal-challenges-list
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Instale as dependências**
 
-### `npm run eject`
+    Instale todas as dependências necessárias usando o npm:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    npm install
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Inicie a aplicação**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    Após a instalação das dependências, você pode iniciar a aplicação com o comando:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```bash
+    npm start
+    ```
 
-## Learn More
+    A aplicação estará disponível no endereço [http://localhost:3000](http://localhost:3000).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Uso
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Adicionando um Novo Desafio
 
-### Code Splitting
+1. Digite o nome do desafio no campo de entrada.
+2. Clique no botão "Adicionar".
+3. O desafio será adicionado à lista exibida abaixo do formulário.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Editando um Desafio
 
-### Analyzing the Bundle Size
+1. Clique no botão "Editar" ao lado do desafio que deseja modificar.
+2. Atualize o texto do desafio.
+3. Clique no botão "Salvar" para aplicar as alterações.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Removendo um Desafio
 
-### Making a Progressive Web App
+1. Clique no botão "Remover" ao lado do desafio que deseja excluir.
+2. O desafio será removido da lista.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Componentes
 
-### Advanced Configuration
+### App.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+O componente principal que gerencia o estado da aplicação e renderiza os componentes filhos. Ele contém o estado dos desafios e as funções para adicionar, editar e remover desafios.
 
-### Deployment
+```javascript
+import React, { useState } from 'react';
+import ChallengeForm from './components/ChallengeForm';
+import ChallengeList from './components/ChallengeList';
+import './styles/App.css';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+function App() {
+  const [challenges, setChallenges] = useState([]);
 
-### `npm run build` fails to minify
+  const addChallenge = (challenge) => {
+    setChallenges([...challenges, challenge]);
+  };
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  const editChallenge = (index, updatedChallenge) => {
+    const updatedChallenges = challenges.map((challenge, i) => 
+      i === index ? updatedChallenge : challenge
+    );
+    setChallenges(updatedChallenges);
+  };
+
+  const removeChallenge = (index) => {
+    setChallenges(challenges.filter((_, i) => i !== index));
+  };
+
+  return (
+    <div className="App">
+      <h1>Lista de Desafios Pessoais</h1>
+      <ChallengeForm addChallenge={addChallenge} />
+      <ChallengeList 
+        challenges={challenges} 
+        editChallenge={editChallenge} 
+        removeChallenge={removeChallenge} 
+      />
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,14 @@
+.ChallengeForm {
+    margin-bottom: 20px;
+  }
+  
+  .ChallengeForm input {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .ChallengeForm button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  

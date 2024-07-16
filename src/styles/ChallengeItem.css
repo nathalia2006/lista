@@ -1,0 +1,47 @@
+/* ChallengeItem.css */
+.ChallengeItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f3e8fd; /* Roxinho claro */
+  
+    /* Ajuste responsivo */
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 20px;
+    }
+  }
+  
+  .ChallengeItem span {
+    flex: 1;
+    color: #6d5a8d; /* Cor de texto */
+    font-size: 16px; /* Tamanho da fonte */
+  }
+  
+  .ChallengeItem button {
+    margin-left: 10px;
+    background-color: #b592c7; /* Roxinho mais escuro */
+    color: white; /* Cor do texto */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+  }
+  
+  .ChallengeItem button:hover {
+    background-color: #906dab; /* Roxinho mais escuro ao passar o mouse */
+  }
+  
+  /* Estilo para telas menores */
+  @media (max-width: 768px) {
+    .ChallengeItem {
+      padding: 20px;
+    }
+  
+    .ChallengeItem button {
+      margin-top: 10px;
+    }
+  }
+  

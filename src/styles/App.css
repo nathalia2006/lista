@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+/* ChallengeForm.css */
+.ChallengeForm {
+  margin-bottom: 20px;
+}
+
+.ChallengeForm input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.ChallengeForm button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* ChallengeList.css */
+.ChallengeList {
+  list-style: none;
+  padding: 0;
+}
+
+/* ChallengeItem.css */
+.ChallengeItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f0e6f9; /* Cor roxo claro */
+}
+
+.ChallengeItem span {
+  flex: 1;
+}
+
+.ChallengeItem button {
+  margin-left: 10px;
+}
+
